@@ -21,4 +21,11 @@ SUBSYSTEM=="input", GROUP="input", MODE="0666"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="067b", SYMLINK+="ttyups", ATTRS{idProduct}=="2303", MODE:="666", GROUP="plugdev"
 EOT
 
+tee $UDEV_RULES_DIR/11-gcups11.rules > /dev/null <<EOT
+SUBSYSTEM=="input", GROUP="input", MODE="0666"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0665", SYMLINK+="ups2", ATTRS{idProduct}=="5161", MODE:="666", GROUP="plugdev"
+KERNEL=="hidraw*", ATTRS{idVendor}=="0665", ATTRS{idProduct}=="5161", MODE="0666", GROUP="plugdev"
+EOT
+
 udevadm control --reload-rules
+udevadm trigger

@@ -9,8 +9,9 @@ service dbus start
 
 echo "GCUPS running on port: $GCUPS_HTTP_PORT"
 echo "Default webUI password: $GCUPS_PASSWORD"
-echo -n "Running gcups " && xvfb-run gcups --version --no-sandbox
+echo -n "Running gcups " && xvfb-run /opt/gcups/gcups --version --no-sandbox
 
-xvfb-run gcups --no-sandbox
+cd /opt/gcups
+xvfb-run ./gcups --no-sandbox
 echo "GCUPS webserver started"
 tail -f /opt/gcups/log/error.log

@@ -12,10 +12,12 @@ RUN apt-get update && apt-get install --no-install-recommends -y wget gpg xvfb l
     python3 -m pip --no-cache-dir uninstall setuptools wheel && \
     apt-get remove -y python3-pip && \
     mkdir -m777 -p /home/gcups/.config/gcups/db && \
+    mkdir -m777 -p /home/gcups/.cache/gcups && \
     mkdir -m777 -p /home/gcups/.local/state/gcups/log && \
     mkdir -m775 -p /home/gcups/.config/gcups/db/gcups-rxdb-1-settings && \
     rm -rf /opt/gcups/license /opt/gcups/manuals && rm -rf /tmp/* && \
-    useradd -m gcups && chown -R gcups:gcups /opt/gcups && \
+    useradd -m gcups && \
+    chown -R gcups:gcups /opt/gcups /home/gcups && \
     mkdir -p /var/run/dbus /run/user/1000/gcups && \
     chown -R gcups:gcups /var/run/dbus /run/user/1000
 

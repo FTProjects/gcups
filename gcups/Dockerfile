@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y wget gpg xvfb l
     mkdir -m775 -p /opt/gcups/db/gcups-rxdb-1-settings && \
     rm -rf /opt/gcups/license /opt/gcups/manuals && rm -rf /tmp/* && \
     useradd -m gcups && chown -R gcups:gcups /opt/gcups && \
-    mkdir /var/run/dbus && chown -R gcups:gcups /var/run/dbus
+    mkdir -p /var/run/dbus /run/user/1000/gcups && \
+    chown -R gcups:gcups /var/run/dbus /run/user/1000
 
 COPY --chown=gcups:gcups init.sh populate-db.py db.txt /opt/
 WORKDIR /opt
